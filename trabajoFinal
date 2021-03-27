@@ -1,0 +1,89 @@
+<img src="https://www.ucb.edu.bo/wp-content/uploads/2020/08/colores-horizontal-NAC-1024x768.png" alt="JuveR" width="300px">
+
+# **TRABAJO FINAL**
+
+## Franco Conde Sanchez
+
+
+![franconet12@gmail.com](C:\Users\HP\Documents\Frank\Postgrado logistica\Rmarkdown\Franco_Conde.jpeg){width=20%}
+
+## Fanor Flores
+
+![2020.fpf.men@gmail.com](C:\Users\HP\Documents\Frank\Postgrado logistica\Rmarkdown\Fanor_Flores.jpeg){width=20%}
+
+## Ronald Flores
+
+# SITUACION PROBLEMA
+
+En la cadena de suministro AVICOLA SOFIA se realizan procesos de negocios, que incluyen la gestión de: la demanda, las relaciones con los clientes, el servicio al cliente, el flujo de producción, la logística y las relaciones con los proveedores; así como el desarrollo y comercialización de nuevos productos. Todos se ejecutan con la finalidad de aumentar el grado de integración en la cadena de suministro avícola, logrando acelerar el flujo de los productos hasta el consumidor final.
+
+Durante la fase de aprovisionamiento se realiza el proceso de gestión de las relaciones con los proveedores, a través de alianzas comerciales, tecnológicas y de producción que mejoran la comunicación en la cadena de suministro, aumentando así la efectividad en la adquisición y preparación de la materia prima. Destaca las alianzas de producción que permiten mantener el ritmo del flujo de materiales en la cadena de suministro, al conocer las necesidades de cada uno de los eslabones integradores.
+
+En el mismo orden de ideas, existen 2 procesos de negocio que cruzan toda la cadena de suministro: la gestión logística y del flujo de producción. Al ser el pollo un producto de consumo masivo, es necesaria la aplicación de una estrategia de producción continua o bajo planeación en las fases de aprovisionamiento y procesamiento, para manejar el flujo de productos y satisfacer las necesidades del mercado de forma ininterrumpida. Además, la gestión logística acopla los tiempos de producción de los eslabones mediante el adecuado manejo de los inventarios y los almacenes, en conjunto con el desarrollo de políticas de transporte que permiten reducir los plazos de entrega de materiales.
+
+En cuanto a la gestión de la relación con sus clientes, la industria avícola emplea canales para conducir sus productos hasta el consumidor final. Dichos canales de comercialización involucran agentes de ventas, mayoristas, puntos de venta y minoristas. Esta estrategia la realiza con la finalidad de poder abarcar el mercado de forma intensiva según lo planificado en el proceso de gestión de la demanda; sin embargo, debido a la actual falta de producción en la etapa de aprovisionamiento, el flujo continuo de materiales no se da con la suficiente intensidad para satisfacer el mercado meta de las empresas.
+
+En síntesis, la cadena de suministro avícola posee un alto grado de integración gracias a sus procesos de negocio; principalmente los relacionados con los proveedores y clientes, aunado al de gestión logística, han permitido generar estrategias en la cadena de suministro para mantener su operatividad, a pesar de las adversas condiciones económicas, sociales y políticas (puedes referir a las económicas solamente). Las estrategias aplicadas por las empresas están dirigidas a satisfacer el mercado de Bolivia y a mantenerse competitivo en el mismo; desarrollando sus operaciones de acuerdo con las circunstancias, necesidades y expectativas de sus clientes, por lo que los clientes deciden abastcerse con el grupo de mayoristas causado por un falta de stock de la empresa causando insatisfaccion del cliente.
+
+
+
+# DATOS DE ESTUDIO
+
+```{r}
+
+library(readxl)
+Ventas <- read_excel("Ventas_Sofia.xlsx")
+View(Ventas)
+
+Ventas[c(1:13),]
+
+```
+# HACER UN ANALISIS EXPLORATORIO DE LOS DATOS
+
+```{r}
+summary(Ventas$`Cantidad de productos vendidos`)
+
+```
+
+# ESTABLECER SI EXISTE CORRELACION ENTRE LOS DATOS DE ESTUDIO
+
+```{r}
+density(Ventas$`Cantidad de productos vendidos`)
+d<-density(Ventas$`Cantidad de productos vendidos`)
+
+```
+```{r}
+plot(d)
+```
+
+## TOTAL VENDIDO POR MAYORISTAS Y SOFIA
+
+```{r}
+library(readxl)
+total<- read_excel("Ventas_Sofia.xlsx", 
+    sheet = "Sugerencia2")
+View(total)
+
+total[c(1:6),]
+```
+```{r}
+library(readxl)
+productos<- read_excel("Ventas_Sofia.xlsx", 
+    sheet = "Productos Vendidos")
+View(productos)
+
+plot(hist(productos$MAYORISTAS))
+
+plot(hist(productos$SOFIA))
+```
+
+## ESTABLECER SI EXISTE CORRELACION ENTRE LOS DATOS
+
+```{r}
+summary(productos)
+```
+
+```{r}
+library(psych)
+pairs(productos[c(2,3)])
+```
